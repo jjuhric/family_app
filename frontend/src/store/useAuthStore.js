@@ -8,6 +8,7 @@ const BASE_URL = import.meta.env.MODE === "development" ? "http://localhost:5001
 export const useAuthStore = create((set, get) => ({
   authUser: null,
   isSigningUp: false,
+  isChangingPassword: false,
   isLoggingIn: false,
   isUpdatingProfile: false,
   isCheckingAuth: true,
@@ -79,6 +80,20 @@ export const useAuthStore = create((set, get) => ({
       toast.error(error.response.data.message);
     } finally {
       set({ isUpdatingProfile: false });
+    }
+  },
+
+  changePassword: async (data) => {
+    set({ isChangingPassword: true });
+    try {
+      const res = await axiosInstance.put("/auth/change-password", { newPassword: data});
+      toast.success("Password changed successfully");
+      set({ authUser: res.data });
+    } catch (error) {
+      console.log("error in change password:", error);
+      toast.error(error.response.data.message);
+    } finally {
+      set({ isChangingPassword: false });
     }
   },
 
