@@ -108,6 +108,42 @@ export const updateProfile = async (req, res) => {
   }
 };
 
+export const changePassword = async (req, res) => {
+  const { newPassword } = req.body;
+  const userId = req.user._id;
+
+  try {
+    if (!newPassword) {
+      return res.status(400).json({ message: "Password required" });
+    }
+
+    if (newPassword.length < 6) {
+      return res.status(400).json({ message: "New password must be at least 6 characters" });
+    }
+
+    const user = await User.findById(userId);
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+
+    const salt = await bcrypt.genSalt(10);
+    const hashedNewPassword = await bcrypt.hash(newPassword, salt);
+
+    user.password = hashedNewPassword;
+    await user.save();
+
+    res.status(200).json({
+      _id: user._id,
+      fullName: user.fullName,
+      email: user.email,
+      profilePic: user.profilePic,
+    });
+  } catch (error) {
+    console.log("Error in changePassword controller", error.message);
+    res.status(500).json({ message: "Internal Server Error" });
+  }
+}
+
 export const checkAuth = (req, res) => {
   try {
     res.status(200).json(req.user);
