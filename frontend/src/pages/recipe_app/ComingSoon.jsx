@@ -1,5 +1,4 @@
 import { HardHat } from 'lucide-react';
-import React from 'react'
 
 const ComingSoon = () => {
  return (
