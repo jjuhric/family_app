@@ -1,8 +1,9 @@
+                                                         ***(ongoing project)***
 # Family Application
 
-## Features include: (updated regularly)
+## Features include:
 * Chat Application
-
+* Recipe Section comming soon.
 
 
 
