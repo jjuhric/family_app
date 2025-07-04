@@ -5,7 +5,7 @@ import SignUpPage from "./pages/chat_app/SignUpPage";
 import LoginPage from "./pages/chat_app/LoginPage";
 import SettingsPage from "./pages/chat_app/SettingsPage";
 import ProfilePage from "./pages/chat_app/ProfilePage";
-import ComingSoonPage from "./pages/chat_app/ComingSoonPage";
+import ComingSoonPage from "./pages/recipe_app/ComingSoon";
 import { Routes, Route, Navigate } from "react-router-dom";
 import { useAuthStore } from "./store/useAuthStore";
 import { useThemeStore } from "./store/useThemeStore";
