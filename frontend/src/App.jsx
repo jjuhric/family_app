@@ -5,7 +5,7 @@ import SignUpPage from "./pages/chat_app/SignUpPage";
 import LoginPage from "./pages/chat_app/LoginPage";
 import SettingsPage from "./pages/chat_app/SettingsPage";
 import ProfilePage from "./pages/chat_app/ProfilePage";
-
+import ComingSoonPage from "./pages/chat_app/ComingSoonPage";
 import { Routes, Route, Navigate } from "react-router-dom";
 import { useAuthStore } from "./store/useAuthStore";
 import { useThemeStore } from "./store/useThemeStore";
@@ -14,8 +14,8 @@ import { useEffect } from "react";
 import { Loader } from "lucide-react";
 import { Toaster } from "react-hot-toast";
 import ChangePasswordPage from "./pages/chat_app/ChangePasswordPage";
-import RecipeHomePage from "./pages/recipe_app/RecipeHomePage";
-import RecipeSinglePage from "./pages/recipe_app/RecipeSinglePage";
+// import RecipeHomePage from "./pages/recipe_app/RecipeHomePage";
+// import RecipeSinglePage from "./pages/recipe_app/RecipeSinglePage";
 
 const App = () => {
   const { authUser, checkAuth, isCheckingAuth, onlineUsers } = useAuthStore();
@@ -60,11 +60,11 @@ const App = () => {
         />
         <Route
           path="/recipes"
-          element={authUser ? <RecipeHomePage /> : <Navigate to="/login" />}
+          element={authUser ? <ComingSoonPage /> : <Navigate to="/login" />}
         />
         <Route
           path="/recipes/:id"
-          element={authUser ? <RecipeSinglePage /> : <Navigate to="/login" />}
+          element={authUser ? <ComingSoonPage /> : <Navigate to="/login" />}
         />
         <Route
           path="/change-password"
