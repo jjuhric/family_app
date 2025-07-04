@@ -11,7 +11,9 @@ export const signup = async (req, res) => {
     }
 
     if (password.length < 6) {
-      return res.status(400).json({ message: "Password must be at least 6 characters" });
+      return res
+        .status(400)
+        .json({ message: "Password must be at least 6 characters" });
     }
 
     const user = await User.findOne({ email });
@@ -118,7 +120,9 @@ export const changePassword = async (req, res) => {
     }
 
     if (newPassword.length < 6) {
-      return res.status(400).json({ message: "New password must be at least 6 characters" });
+      return res
+        .status(400)
+        .json({ message: "New password must be at least 6 characters" });
     }
 
     const user = await User.findById(userId);
@@ -142,7 +146,7 @@ export const changePassword = async (req, res) => {
     console.log("Error in changePassword controller", error.message);
     res.status(500).json({ message: "Internal Server Error" });
   }
-}
+};
 
 export const checkAuth = (req, res) => {
   try {

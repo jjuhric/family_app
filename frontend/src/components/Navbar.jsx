@@ -1,6 +1,13 @@
 import { Link } from "react-router-dom";
 import { useAuthStore } from "../store/useAuthStore";
-import { LogOut, MessageSquare, Settings, User, Beef, Menu } from "lucide-react";
+import {
+  LogOut,
+  MessageSquare,
+  Settings,
+  User,
+  Beef,
+  Menu,
+} from "lucide-react";
 import { useRef } from "react";
 
 const Navbar = () => {
@@ -16,7 +23,12 @@ const Navbar = () => {
         <div className="flex items-center justify-between h-full">
           {/* Hamburger menu for small screens */}
           <div className="dropdown lg:hidden">
-            <div tabIndex={0} role="button" className="btn btn-ghost btn-circle" ref={dropdownRef}>
+            <div
+              tabIndex={0}
+              role="button"
+              className="btn btn-ghost btn-circle"
+              ref={dropdownRef}
+            >
               <Menu className="w-6 h-6" />
             </div>
             <ul
@@ -24,33 +36,48 @@ const Navbar = () => {
               className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
             >
               <li>
-                <Link to="/" className="flex items-center gap-2.5" onClick={() => dropdownRef.current.blur()}>
+                <Link
+                  to="/"
+                  className="flex items-center gap-2.5"
+                  onClick={() => dropdownRef.current.blur()}
+                >
                   <MessageSquare className="w-5 h-5 text-primary" />
                   <span>Family Chat</span>
                 </Link>
               </li>
               {authUser && (
                 <>
-              <li>
-                <Link to="/recipe" className="flex items-center gap-2.5" onClick={() => dropdownRef.current.blur()}>
-                  <Beef className="w-5 h-5 text-primary" />
-                  <span>Recipe</span>
-                </Link>
-              </li>
-              <li>
-                <Link to="/settings" className="flex items-center gap-2.5" onClick={() => dropdownRef.current.blur()}>
-                  <Settings className="w-5 h-5" />
-                  <span>Settings</span>
-                </Link>
-              </li>
+                  <li>
+                    <Link
+                      to="/recipe"
+                      className="flex items-center gap-2.5"
+                      onClick={() => dropdownRef.current.blur()}
+                    >
+                      <Beef className="w-5 h-5 text-primary" />
+                      <span>Recipe</span>
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
+                      to="/settings"
+                      className="flex items-center gap-2.5"
+                      onClick={() => dropdownRef.current.blur()}
+                    >
+                      <Settings className="w-5 h-5" />
+                      <span>Settings</span>
+                    </Link>
+                  </li>
                   <li onClick={() => dropdownRef.current.blur()}>
-                    <Link to="/profile" className="flex items-center gap-2.5" >
+                    <Link to="/profile" className="flex items-center gap-2.5">
                       <User className="w-5 h-5" />
                       <span>Profile</span>
                     </Link>
-                  </li> 
+                  </li>
                   <li onClick={() => dropdownRef.current.blur()}>
-                    <button onClick={logout} className="flex items-center gap-2.5">
+                    <button
+                      onClick={logout}
+                      className="flex items-center gap-2.5"
+                    >
                       <LogOut className="w-5 h-5" />
                       <span>Logout</span>
                     </button>
@@ -62,13 +89,19 @@ const Navbar = () => {
 
           {/* Regular navigation for large screens */}
           <div className="hidden lg:flex items-center gap-8">
-            <Link to="/" className="flex items-center gap-2.5 hover:opacity-80 transition-all">
+            <Link
+              to="/"
+              className="flex items-center gap-2.5 hover:opacity-80 transition-all"
+            >
               <div className="size-9 rounded-lg bg-primary/10 flex items-center justify-center">
                 <MessageSquare className="w-5 h-5 text-primary" />
               </div>
               <h1 className="text-lg font-bold">Family Chat</h1>
             </Link>
-            <Link to="/recipe" className="flex items-center gap-2.5 hover:opacity-80 transition-all">
+            <Link
+              to="/recipe"
+              className="flex items-center gap-2.5 hover:opacity-80 transition-all"
+            >
               <div className="size-9 rounded-lg bg-primary/10 flex items-center justify-center">
                 <Beef className="w-5 h-5 text-primary" />
               </div>
@@ -77,11 +110,11 @@ const Navbar = () => {
           </div>
           <div className="flex items-center gap-4">
             {/* Add a banner to say DEVELOPMENT here if we are in development */}
-                {import.meta.env.DEV && (
-                  <h1 className="bg-red-500 text-white text-center py-2 text-sm font-bold">
-                    DEVELOPMENT MODE
-                  </h1>
-                )}
+            {import.meta.env.DEV && (
+              <h1 className="bg-red-500 text-white text-center py-2 text-sm font-bold">
+                DEVELOPMENT MODE
+              </h1>
+            )}
           </div>
           <div className="hidden lg:flex items-center gap-2">
             <Link
