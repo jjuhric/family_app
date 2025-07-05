@@ -5,7 +5,7 @@ import SignUpPage from "./pages/chat_app/SignUpPage";
 import LoginPage from "./pages/chat_app/LoginPage";
 import SettingsPage from "./pages/chat_app/SettingsPage";
 import ProfilePage from "./pages/chat_app/ProfilePage";
-import ComingSoonPage from "./pages/recipe_app/ComingSoon";
+import ComingSoon from "./pages/recipe_app/ComingSoon";
 import { Routes, Route, Navigate } from "react-router-dom";
 import { useAuthStore } from "./store/useAuthStore";
 import { useThemeStore } from "./store/useThemeStore";
@@ -60,11 +60,11 @@ const App = () => {
         />
         <Route
           path="/recipes"
-          element={authUser ? <ComingSoonPage /> : <Navigate to="/login" />}
+          element={authUser ? <ComingSoon /> : <Navigate to="/login" />}
         />
         <Route
           path="/recipes/:id"
-          element={authUser ? <ComingSoonPage /> : <Navigate to="/login" />}
+          element={authUser ? <ComingSoon /> : <Navigate to="/login" />}
         />
         <Route
           path="/change-password"
