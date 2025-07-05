@@ -49,12 +49,12 @@ const Navbar = () => {
                 <>
                   <li>
                     <Link
-                      to="/recipe"
+                      to="/recipes"
                       className="flex items-center gap-2.5"
                       onClick={() => dropdownRef.current.blur()}
                     >
                       <Beef className="w-5 h-5 text-primary" />
-                      <span>Recipe</span>
+                      <span>Recipes</span>
                     </Link>
                   </li>
                   <li>
@@ -99,13 +99,13 @@ const Navbar = () => {
               <h1 className="text-lg font-bold">Family Chat</h1>
             </Link>
             <Link
-              to="/recipe"
+              to="/recipes"
               className="flex items-center gap-2.5 hover:opacity-80 transition-all"
             >
               <div className="size-9 rounded-lg bg-primary/10 flex items-center justify-center">
                 <Beef className="w-5 h-5 text-primary" />
               </div>
-              <h1 className="text-lg font-bold">Recipe</h1>
+              <h1 className="text-lg font-bold">Recipes</h1>
             </Link>
           </div>
           <div className="flex items-center gap-4">
