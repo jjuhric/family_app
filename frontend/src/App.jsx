@@ -5,7 +5,11 @@ import SignUpPage from "./pages/chat_app/SignUpPage";
 import LoginPage from "./pages/chat_app/LoginPage";
 import SettingsPage from "./pages/chat_app/SettingsPage";
 import ProfilePage from "./pages/chat_app/ProfilePage";
-import ComingSoon from "./pages/recipe_app/ComingSoon";
+import ComingSoonPage from "./pages/recipe_app/ComingSoon";
+import UpsertRecipePage from "./pages/recipe_app/UpsertRecipePage";
+import ChangePasswordPage from "./pages/chat_app/ChangePasswordPage";
+import RecipeHomePage from "./pages/recipe_app/RecipeHomePage";
+import RecipeSinglePage from "./pages/recipe_app/RecipeSinglePage";
 import { Routes, Route, Navigate } from "react-router-dom";
 import { useAuthStore } from "./store/useAuthStore";
 import { useThemeStore } from "./store/useThemeStore";
@@ -13,9 +17,7 @@ import { useEffect } from "react";
 
 import { Loader } from "lucide-react";
 import { Toaster } from "react-hot-toast";
-import ChangePasswordPage from "./pages/chat_app/ChangePasswordPage";
-// import RecipeHomePage from "./pages/recipe_app/RecipeHomePage";
-// import RecipeSinglePage from "./pages/recipe_app/RecipeSinglePage";
+const IS_DEV = import.meta.env.DEV;
 
 const App = () => {
   const { authUser, checkAuth, isCheckingAuth, onlineUsers } = useAuthStore();
@@ -58,13 +60,21 @@ const App = () => {
           path="/profile"
           element={authUser ? <ProfilePage /> : <Navigate to="/login" />}
         />
-        <Route
+       <Route
           path="/recipes"
-          element={authUser ? <ComingSoon /> : <Navigate to="/login" />}
+          element={authUser ? IS_DEV ? <RecipeHomePage /> : <ComingSoonPage /> : <Navigate to="/login" />}
         />
         <Route
           path="/recipes/:id"
-          element={authUser ? <ComingSoon /> : <Navigate to="/login" />}
+          element={authUser ? IS_DEV ? <RecipeSinglePage /> : <ComingSoonPage /> : <Navigate to="/login" />}
+        />
+        <Route
+          path="/recipes/create"
+          element={authUser ? IS_DEV ? <UpsertRecipePage /> : <ComingSoonPage /> : <Navigate to="/login" />}
+        />
+        <Route
+          path="/recipes/edit/:id"
+          element={authUser ? IS_DEV ? <UpsertRecipePage /> : <ComingSoonPage /> : <Navigate to="/login" />}
         />
         <Route
           path="/change-password"

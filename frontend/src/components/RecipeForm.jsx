@@ -30,7 +30,7 @@ const RecipeForm = ({ initialData, onSubmit }) => {
     e.preventDefault();
     try {
       await onSubmit(formData);
-      navigate("/recipe");
+      navigate("/recipes");
     } catch (error) {
       console.error("Failed to save recipe:", error);
     }
@@ -74,7 +74,7 @@ const RecipeForm = ({ initialData, onSubmit }) => {
           name="description"
           value={formData.description}
           onChange={handleChange}
-          rows="3"
+          rows="1"
           className="mt-1 block w-full textarea textarea-bordered"
           required
         ></textarea>
@@ -91,7 +91,7 @@ const RecipeForm = ({ initialData, onSubmit }) => {
           name="ingredients"
           value={formData.ingredients}
           onChange={handleChange}
-          rows="3"
+          rows="1"
           className="mt-1 block w-full textarea textarea-bordered"
           required
         ></textarea>
@@ -113,9 +113,9 @@ const RecipeForm = ({ initialData, onSubmit }) => {
           required
         ></textarea>
       </div>
-      <div>
+      <div className="flex justify-end items-center mt-4">
         <button type="submit" className="btn btn-primary">
-          {initialData ? "Update Recipe" : "Create Recipe"}
+          {initialData && initialData?.title ? "Update Recipe" : "Create Recipe"}
         </button>
       </div>
     </form>

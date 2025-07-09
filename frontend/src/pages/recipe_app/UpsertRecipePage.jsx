@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { useRecipeStore } from "../../store/useRecipeStore";
+import useRecipeStore from "../../store/useRecipeStore";
 import RecipeForm from "../../components/RecipeForm";
 
 const UpsertRecipePage = () => {
@@ -29,8 +29,8 @@ const UpsertRecipePage = () => {
   }, [id, getRecipeById]);
 
   return (
-    <div>
-      <h1>{id ? "Edit Recipe" : "Create Recipe"}</h1>
+    <div className="h-screen pt-20 px-50">
+      <h1 className="text-2xl font-semibold text-center underline">{id ? "Edit Recipe" : "Create Recipe"}</h1>
       <RecipeForm
         initialData={recipe}
         onSubmit={id ? updateRecipe : createRecipe}
