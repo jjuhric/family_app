@@ -4,8 +4,11 @@ import { axiosInstance } from "../lib/axios";
 
 const useRecipeStore = create((set) => ({
   recipes: [],
+  isFetchingRecipes: false,
+  
   fetchRecipes: async () => {
     try {
+      set({ isFetchingRecipes: true });
       const response = await axiosInstance.get("/recipes");
       set({ recipes: response.data });
     } catch (error) {
@@ -13,6 +16,8 @@ const useRecipeStore = create((set) => ({
         "Failed to fetch recipes",
         error.response?.data?.message || "Unknown error"
       );
+    } finally {
+      set({ isFetchingRecipes: false });  
     }
   },
 

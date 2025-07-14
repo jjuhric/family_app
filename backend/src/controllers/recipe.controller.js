@@ -2,7 +2,7 @@ import Recipe from "../models/recipe.model.js";
 
 export const getRecipes = async (req, res) => {
   try {
-    const recipes = await Recipe.find().populate("user", "username");
+    const recipes = await Recipe.find();
     res.status(200).json(recipes);
   } catch (error) {
     console.error("Error in getRecipes: ", error.message);
@@ -13,7 +13,7 @@ export const getRecipes = async (req, res) => {
 export const getRecipeById = async (req, res) => {
   try {
     const { id } = req.params;
-    const recipe = await Recipe.findById(id).populate("user", "username");
+    const recipe = await Recipe.findById(id)
 
     if (!recipe) {
       return res.status(404).json({ error: "Recipe not found" });
