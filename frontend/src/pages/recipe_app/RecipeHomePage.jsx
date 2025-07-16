@@ -35,14 +35,15 @@ const RecipeHomePage = () => {
         <div className="bg-base-300 rounded-xl p-6 space-y-8">
           <div className="mb-4">
             <h1 className="lg:text-2xl text-lg lg:text-center font-semibold underline mb-4">Recipes</h1>
-            <div className="mb-4">
+            <h6 className="text-sm text-gray-500 lg:text-center">This is V1 for Recipes. More Updates to Come!</h6>
+            <div className="mb-4 flex justify-between items-center">
               {/* Search bar */}
               <input
                 type="text"
                 placeholder="Search recipes..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                className="input input-bordered"
+                className="input input-bordered flex-1"
               />
             </div>
             {/* Sunken separator */}
