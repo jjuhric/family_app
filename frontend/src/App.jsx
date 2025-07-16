@@ -62,15 +62,15 @@ const App = () => {
         />
        <Route
           path="/recipes"
-          element={authUser ? IS_DEV ? <RecipeHomePage /> : <ComingSoonPage /> : <Navigate to="/login" />}
+          element={authUser ? <RecipeHomePage /> : <Navigate to="/login" />}
         />
         <Route
           path="/recipes/:id"
-          element={authUser ? IS_DEV ? <RecipeSinglePage /> : <ComingSoonPage /> : <Navigate to="/login" />}
+          element={authUser ? <RecipeSinglePage /> : <Navigate to="/login" />}
         />
         <Route
           path="/recipes/create"
-          element={authUser ? IS_DEV ? <UpsertRecipePage /> : <ComingSoonPage /> : <Navigate to="/login" />}
+          element={authUser ? <UpsertRecipePage /> : <Navigate to="/login" />}
         />
         <Route
           path="/recipes/edit/:id"
