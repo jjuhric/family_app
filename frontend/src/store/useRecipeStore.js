@@ -36,7 +36,11 @@ const useRecipeStore = create((set) => ({
 
   createRecipe: async (recipeData) => {
     try {
-      const response = await axiosInstance.post("/recipes", recipeData);
+      const data = {
+        ...recipeData,
+        ingredients: recipeData.ingredients.split(",").map((ing) => ing.trim()),
+      };
+      const response = await axiosInstance.post("/recipes", data);
       set((state) => ({
         recipes: [...state.recipes, response.data],
       }));
