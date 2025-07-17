@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { useAuthStore } from "../store/useAuthStore";
+import IconWithBadge from "./IconWithBadge";
 import {
   LogOut,
   MessageSquare,
@@ -94,7 +95,7 @@ const Navbar = () => {
               className="flex items-center gap-2.5 hover:opacity-80 transition-all"
             >
               <div className="size-9 rounded-lg bg-primary/10 flex items-center justify-center">
-                <MessageSquare className="w-5 h-5 text-primary" />
+                <IconWithBadge count={0} Icon={MessageSquare} />
               </div>
               <h1 className="text-lg font-bold">Family Chat</h1>
             </Link>
