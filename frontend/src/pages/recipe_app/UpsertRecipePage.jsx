@@ -2,11 +2,14 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import useRecipeStore from "../../store/useRecipeStore";
 import RecipeForm from "../../components/RecipeForm";
+import { useAuthStore } from "../../store/useAuthStore";
 
 const UpsertRecipePage = () => {
   const [recipe, setRecipe] = useState(null);
   const { id } = useParams();
   const { getRecipeById, createRecipe, updateRecipe } = useRecipeStore();
+  const { authUser } = useAuthStore();
+
   useEffect(() => {
     const fetchRecipe = async () => {
       try {
@@ -21,12 +24,12 @@ const UpsertRecipePage = () => {
     } else {
       setRecipe({
         title: "",
-        description: "",
+        author:  authUser.fullName,
         ingredients: "",
         instructions: "",
       });
     }
-  }, [id, getRecipeById]);
+  }, [id, getRecipeById, authUser.fullName]);
 
   return (
     <div className="h-screen pt-20 px-50">

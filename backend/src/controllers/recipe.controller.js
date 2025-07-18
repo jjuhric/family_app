@@ -28,12 +28,12 @@ export const getRecipeById = async (req, res) => {
 
 export const createRecipe = async (req, res) => {
   try {
-    const { title, description, ingredients, instructions } = req.body;
+    const { title, author, ingredients, instructions } = req.body;
     const userId = req.user._id;
 
     const newRecipe = new Recipe({
       title,
-      description,
+      author,
       ingredients,
       instructions,
       user: userId,
@@ -50,11 +50,11 @@ export const createRecipe = async (req, res) => {
 export const updateRecipe = async (req, res) => {
   try {
     const { id } = req.params;
-    const { title, description, ingredients, instructions } = req.body;
+    const { title, author, ingredients, instructions } = req.body;
 
     const updatedRecipe = await Recipe.findByIdAndUpdate(
       id,
-      { title, description, ingredients, instructions },
+      { title, author, ingredients, instructions },
       { new: true }
     ).populate("user", "username");
 

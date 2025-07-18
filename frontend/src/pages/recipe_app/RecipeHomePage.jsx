@@ -17,7 +17,7 @@ const RecipeHomePage = () => {
       const lowerCaseSearchTerm = searchTerm.toLowerCase();
       const filtered = recipes.filter((recipe) =>
         recipe.title.toLowerCase().includes(lowerCaseSearchTerm) ||
-        recipe.description.toLowerCase().includes(lowerCaseSearchTerm)
+        recipe.author.toLowerCase().includes(lowerCaseSearchTerm)
       );
       setFilteredRecipes(filtered);
     } else {
@@ -57,7 +57,7 @@ const RecipeHomePage = () => {
                         <Link to={`/recipes/${recipe._id}`}>
                           {recipe.title} <br />
                           <span className="text-sm text-gray-500">
-                            {recipe.description}
+                            by: {recipe.author}
                           </span>
                         </Link>
                       </li>
@@ -71,7 +71,7 @@ const RecipeHomePage = () => {
                       <Link to={`/recipes/${filteredRecipe._id}`}>
                         {filteredRecipe.title} <br />
                         <span className="text-sm text-gray-500">
-                          {filteredRecipe.description}
+                          by: {filteredRecipe.author}
                         </span>
                       </Link>
                     </li>

@@ -1,11 +1,14 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { useAuthStore } from "../store/useAuthStore";
 
 const RecipeForm = ({ initialData, onSubmit }) => {
+  const { authUser } = useAuthStore();
+
   const [formData, setFormData] = useState(
     initialData || {
       title: "",
-      description: "",
+      author: authUser.fulllName,
       ingredients: "",
       instructions: "",
     }
@@ -64,15 +67,15 @@ const RecipeForm = ({ initialData, onSubmit }) => {
       </div>
       <div>
         <label
-          htmlFor="description"
+          htmlFor="author"
           className="block text-sm font-medium text-base-content"
         >
-          Description
+          Author
         </label>
         <textarea
-          id="description"
-          name="description"
-          value={formData.description}
+          id="author"
+          name="author"
+          value={formData.author}
           onChange={handleChange}
           rows="1"
           className="mt-1 block w-full textarea textarea-bordered"
