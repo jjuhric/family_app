@@ -52,7 +52,7 @@ export const updateRecipe = async (req, res) => {
 
     const updatedRecipe = await Recipe.findByIdAndUpdate(
       id,
-      { title, author, ingredients: ingredients.split("\n").filter(ing => ing?.trim()), instructions },
+      { title, author, ingredients: ingredients.split("\n").filter(ing => ing?.trim()), instructions, userId: req.user._id },
     );
 
     if (!updatedRecipe) {
