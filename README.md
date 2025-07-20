@@ -3,7 +3,7 @@
 
 ## Features include:
 * Chat Application
-* Recipe Section comming soon.
+* Recipe Section V1 is here.
 
 
 
