@@ -4,7 +4,6 @@ import { useAuthStore } from "../store/useAuthStore";
 
 const RecipeForm = ({ initialData, onSubmit }) => {
   const { authUser } = useAuthStore();
-
   const [formData, setFormData] = useState(
     initialData || {
       title: "",
@@ -44,10 +43,7 @@ const RecipeForm = ({ initialData, onSubmit }) => {
   }
 
   return (
-    <form
-      onSubmit={handleSubmit}
-      className="space-y-4 p-4 bg-base-100 rounded-lg shadow-md"
-    >
+    <form className="space-y-4 p-4 bg-base-100 rounded-lg shadow-md">
       <div>
         <label
           htmlFor="title"
@@ -72,7 +68,7 @@ const RecipeForm = ({ initialData, onSubmit }) => {
         >
           Author
         </label>
-        <textarea
+        <input
           id="author"
           name="author"
           value={formData.author}
@@ -80,7 +76,7 @@ const RecipeForm = ({ initialData, onSubmit }) => {
           rows="1"
           className="mt-1 block w-full textarea textarea-bordered"
           required
-        ></textarea>
+        ></input>
       </div>
       <div>
         <label
@@ -89,15 +85,32 @@ const RecipeForm = ({ initialData, onSubmit }) => {
         >
           Ingredients
         </label>
-        <textarea
-          id="ingredients"
-          name="ingredients"
-          value={formData.ingredients}
-          onChange={handleChange}
-          rows="1"
-          className="mt-1 block w-full textarea textarea-bordered"
-          required
-        ></textarea>
+        {
+          formData.ingredients.split("\n").map((ingredient, index) => (
+            <input
+              key={index}
+              type="text"
+              name="ingredients"
+              value={ingredient}
+              onChange={(e) => {
+                const newIngredients = [...formData.ingredients.split("\n")];
+                newIngredients[index] = e.target.value;
+                setFormData((prevData) => ({
+                  ...prevData,
+                  ingredients: newIngredients.join("\n"),
+                }));
+              }}
+              className="mt-1 block w-full input input-bordered mb-2"
+            />
+          ))
+        }
+          <button onClick={(e) => {
+            e.preventDefault();
+            setFormData((prevData) => ({
+              ...prevData,
+              ingredients: prevData.ingredients + "\n",
+            }));
+          }} className="btn btn-primary">Add Ingredient</button>
       </div>
       <div>
         <label
@@ -117,7 +130,7 @@ const RecipeForm = ({ initialData, onSubmit }) => {
         ></textarea>
       </div>
       <div className="flex justify-end items-center mt-4">
-        <button type="submit" className="btn btn-primary">
+        <button onClick={handleSubmit} className="btn btn-primary">
           {initialData && initialData?.title ? "Update Recipe" : "Create Recipe"}
         </button>
       </div>

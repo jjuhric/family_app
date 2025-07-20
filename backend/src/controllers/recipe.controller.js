@@ -29,14 +29,12 @@ export const getRecipeById = async (req, res) => {
 export const createRecipe = async (req, res) => {
   try {
     const { title, author, ingredients, instructions } = req.body;
-    const userId = req.user._id;
 
     const newRecipe = new Recipe({
       title,
       author,
       ingredients,
       instructions,
-      user: userId,
     });
 
     await newRecipe.save();
@@ -54,9 +52,8 @@ export const updateRecipe = async (req, res) => {
 
     const updatedRecipe = await Recipe.findByIdAndUpdate(
       id,
-      { title, author, ingredients, instructions },
-      { new: true }
-    ).populate("user", "username");
+      { title, author, ingredients: ingredients.split("\n").filter(ing => ing?.trim()), instructions },
+    );
 
     if (!updatedRecipe) {
       return res.status(404).json({ error: "Recipe not found" });

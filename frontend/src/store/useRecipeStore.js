@@ -53,12 +53,12 @@ const useRecipeStore = create((set) => ({
     }
   },
 
-  updateRecipe: async (id, recipeData) => {
+  updateRecipe: async (recipeData) => {
     try {
-      const response = await axiosInstance.put(`/recipes/${id}`, recipeData);
+      const response = await axiosInstance.put(`/recipes/${recipeData._id}`, recipeData);
       set((state) => ({
         recipes: state.recipes.map((recipe) =>
-          recipe._id === id ? response.data : recipe
+          recipe._id === recipeData._id ? response.data : recipe
         ),
       }));
       toast.success("Recipe updated successfully");
