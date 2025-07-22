@@ -34,7 +34,7 @@ const RecipeForm = ({ initialData, onSubmit }) => {
     e.preventDefault();
     try {
       await onSubmit(formData);
-      !initialData ? navigate("/recipes") : navigate(`/recipes/${formData._id}`); 
+      !initialData?.title ? navigate("/recipes") : navigate(`/recipes/${formData._id}`); 
     } catch (error) {
       console.error("Failed to save recipe:", error);
     }
