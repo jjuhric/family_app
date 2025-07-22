@@ -79,8 +79,8 @@ const RecipeSinglePage = () => {
           <h2 className="font-bold text-lg">Confirm Deletion</h2>
           <p>Are you sure you want to delete this recipe?</p>
           <div className="modal-action">
-            <button className="btn btn-secondary" onClick={handleClose}>Cancel</button>
-            <button className="btn btn-danger" onClick={handleDelete}>Delete</button>
+            <button className="btn btn-neutral" onClick={handleClose}>Cancel</button>
+            <button className="btn btn-error" onClick={handleDelete}>Delete</button>
           </div>
         </div>
       </div>
