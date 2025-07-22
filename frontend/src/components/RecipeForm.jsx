@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
 import { useAuthStore } from "../store/useAuthStore";
+import { useNavigate } from "react-router-dom";
+
 
 const RecipeForm = ({ initialData, onSubmit }) => {
   const { authUser } = useAuthStore();
@@ -12,13 +13,14 @@ const RecipeForm = ({ initialData, onSubmit }) => {
       instructions: "",
     }
   );
-  const navigate = useNavigate();
 
   useEffect(() => {
     if (initialData) {
       setFormData(initialData);
     }
   }, [initialData]);
+
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -32,7 +34,7 @@ const RecipeForm = ({ initialData, onSubmit }) => {
     e.preventDefault();
     try {
       await onSubmit(formData);
-      navigate("/recipes");
+      !initialData ? navigate("/recipes") : navigate(`/recipes/${formData._id}`); 
     } catch (error) {
       console.error("Failed to save recipe:", error);
     }

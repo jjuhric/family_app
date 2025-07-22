@@ -35,6 +35,7 @@ export const createRecipe = async (req, res) => {
       author,
       ingredients,
       instructions,
+      userId: req.user._id, 
     });
 
     await newRecipe.save();

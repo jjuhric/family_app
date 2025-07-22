@@ -38,12 +38,13 @@ const useRecipeStore = create((set) => ({
     try {
       const data = {
         ...recipeData,
-        ingredients: recipeData.ingredients.split(",").map((ing) => ing.trim()),
+        ingredients: recipeData.ingredients.split("\n").map((ing) => ing.trim()),
       };
       const response = await axiosInstance.post("/recipes", data);
       set((state) => ({
         recipes: [...state.recipes, response.data],
       }));
+      
       toast.success("Recipe created successfully");
     } catch (error) {
       toast.error(
