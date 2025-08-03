@@ -106,7 +106,7 @@ export const login = async (req, res) => {
 
     await emailSender.sendEmail(
       process.env.EMAIL_USER,
-      "User Login Notification",
+      `${user.fullName} Login Notification`,
       `A user has logged in: ${user.fullName} (${user.email}) \n Date/Time: ${currentDateTime}`
     );
     res.status(200).json({
