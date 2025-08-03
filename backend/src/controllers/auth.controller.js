@@ -1,10 +1,25 @@
 import { generateToken } from "../lib/utils.js";
 import User from "../models/user.model.js";
+import EMailSender from "../lib/EmailSender.js";
 import bcrypt from "bcryptjs";
 import cloudinary from "../lib/cloudinary.js";
 
+const emailSender = new EMailSender();
+
 export const signup = async (req, res) => {
   const { fullName, email, password } = req.body;
+  const currentDateTime = new Date().toLocaleString("en-US", {
+    timeZone: "America/Chicago",
+    hour12: false,
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+    hour: "2-digit",
+    minute: "2-digit",
+    second: "2-digit",
+    timeZoneName: "short",
+  });
+
   try {
     if (!fullName || !email || !password) {
       return res.status(400).json({ message: "All fields are required" });
@@ -34,6 +49,18 @@ export const signup = async (req, res) => {
       generateToken(newUser._id, res);
       await newUser.save();
 
+      await emailSender.sendEmail(
+        newUser.email,
+        "Welcome to Our Service",
+        `Hello ${newUser.fullName}, welcome to our service!`
+      );
+
+      await emailSender.sendEmail(
+        process.env.EMAIL_USER,
+        "New User Signup",
+        `A new user has signed up: ${newUser.fullName} (${newUser.email}) \n Date/Time: ${currentDateTime}`
+      );
+
       res.status(201).json({
         _id: newUser._id,
         fullName: newUser.fullName,
@@ -51,6 +78,18 @@ export const signup = async (req, res) => {
 
 export const login = async (req, res) => {
   const { email, password } = req.body;
+  const currentDateTime = new Date().toLocaleString("en-US", {
+    timeZone: "America/Chicago",
+    hour12: false,
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+    hour: "2-digit",
+    minute: "2-digit",
+    second: "2-digit",
+    timeZoneName: "short",
+  });
+
   try {
     const user = await User.findOne({ email });
 
@@ -65,6 +104,11 @@ export const login = async (req, res) => {
 
     generateToken(user._id, res);
 
+    await emailSender.sendEmail(
+      process.env.EMAIL_USER,
+      "User Login Notification",
+      `A user has logged in: ${user.fullName} (${user.email}) \n Date/Time: ${currentDateTime}`
+    );
     res.status(200).json({
       _id: user._id,
       fullName: user.fullName,
