@@ -5,7 +5,8 @@ import SignUpPage from "./pages/chat_app/SignUpPage";
 import LoginPage from "./pages/chat_app/LoginPage";
 import SettingsPage from "./pages/chat_app/SettingsPage";
 import ProfilePage from "./pages/chat_app/ProfilePage";
-// import ComingSoonPage from "./pages/recipe_app/ComingSoon";
+// import TasksPage from "./pages/chat_app/TasksPage";
+import ComingSoonPage from "./pages/recipe_app/ComingSoon";
 import UpsertRecipePage from "./pages/recipe_app/UpsertRecipePage";
 import ChangePasswordPage from "./pages/chat_app/ChangePasswordPage";
 import RecipeHomePage from "./pages/recipe_app/RecipeHomePage";
@@ -71,6 +72,10 @@ const App = () => {
         <Route
           path="/recipes/edit/:id"
           element={authUser ? <UpsertRecipePage /> : <Navigate to="/login" />}
+        />
+        <Route 
+          path="/tasks"
+          element={authUser ? <ComingSoonPage /> : <Navigate to="/login" />}
         />
         <Route
           path="/change-password"

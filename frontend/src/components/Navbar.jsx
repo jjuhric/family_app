@@ -8,6 +8,7 @@ import {
   User,
   Beef,
   Menu,
+  Blinds
 } from "lucide-react";
 import { useRef } from "react";
 
@@ -75,6 +76,12 @@ const Navbar = () => {
                     </Link>
                   </li>
                   <li onClick={() => dropdownRef.current.blur()}>
+                    <Link to="/tasks" className="flex items-center gap-2.5">
+                      <Blinds className="w-5 h-5" />
+                      <span>Tasks</span>
+                    </Link>
+                  </li>
+                  <li onClick={() => dropdownRef.current.blur()}>
                     <button
                       onClick={logout}
                       className="flex items-center gap-2.5"
@@ -134,6 +141,11 @@ const Navbar = () => {
                 <Link to={"/profile"} className={`btn btn-sm gap-2`}>
                   <User className="size-5" />
                   <span className="hidden sm:inline">Profile</span>
+                </Link>
+
+                <Link to={"/tasks"} className={`btn btn-sm gap-2`}>
+                  <Blinds className="size-5" />
+                  <span className="hidden sm:inline">Tasks</span>
                 </Link>
 
                 <button className="flex gap-2 items-center" onClick={logout}>
