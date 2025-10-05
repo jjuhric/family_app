@@ -5,7 +5,7 @@ import SignUpPage from "./pages/chat_app/SignUpPage";
 import LoginPage from "./pages/chat_app/LoginPage";
 import SettingsPage from "./pages/chat_app/SettingsPage";
 import ProfilePage from "./pages/chat_app/ProfilePage";
-// import TasksPage from "./pages/chat_app/TasksPage";
+import TasksPage from "./pages/chat_app/TasksPage";
 import ComingSoonPage from "./pages/recipe_app/ComingSoon";
 import UpsertRecipePage from "./pages/recipe_app/UpsertRecipePage";
 import ChangePasswordPage from "./pages/chat_app/ChangePasswordPage";
@@ -18,7 +18,7 @@ import { useEffect } from "react";
 
 import { Loader } from "lucide-react";
 import { Toaster } from "react-hot-toast";
-// const IS_DEV = import.meta.env.DEV;
+const IS_DEV = import.meta.env.DEV;
 
 const App = () => {
   const { authUser, checkAuth, isCheckingAuth } = useAuthStore();
@@ -57,7 +57,7 @@ const App = () => {
           path="/profile"
           element={authUser ? <ProfilePage /> : <Navigate to="/login" />}
         />
-       <Route
+        <Route
           path="/recipes"
           element={authUser ? <RecipeHomePage /> : <Navigate to="/login" />}
         />
@@ -73,9 +73,9 @@ const App = () => {
           path="/recipes/edit/:id"
           element={authUser ? <UpsertRecipePage /> : <Navigate to="/login" />}
         />
-        <Route 
+        <Route
           path="/tasks"
-          element={authUser ? <ComingSoonPage /> : <Navigate to="/login" />}
+          element={authUser ? IS_DEV ? <TasksPage /> : <ComingSoonPage /> : <Navigate to="/login" />}
         />
         <Route
           path="/change-password"

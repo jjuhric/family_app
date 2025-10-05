@@ -1,27 +1,32 @@
-import { mongoose } from 'mongoose'
+import mongoose from "mongoose";
 
 const taskSchema = new mongoose.Schema(
-    {
-        name: {
-            type: String,
-            required: true,
-        },
-        completed: {
-            type: Boolean,
-            required: true,
-        },
-        dateDue: {
-            type: Date,
-            default: Date.now()
-        },
-        userId: {
-            type: mongoose.Schema.Types.ObjectId,
-            ref: 'User',
-            required: true,
-        },
+  {
+    title: {
+      type: String,
+      required: true,
+      trim: true,
     },
-    { timestamps: true}
+    description: {
+      type: String,
+      default: "",
+    },
+    completed: {
+      type: Boolean,
+      default: false,
+    },
+    dueDate: {
+      type: Date,
+    },
+    // store reference to the User who owns the task
+    userId: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
+      required: true,
+    },
+  },
+  { timestamps: true }
 );
 
-const Task = mongoose.model('Recipe', recipeSchema);
+const Task = mongoose.models.Task || mongoose.model("Task", taskSchema);
 export default Task;
