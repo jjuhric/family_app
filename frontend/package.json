@@ -13,6 +13,7 @@
     "@emotion/react": "^11.14.0",
     "@emotion/styled": "^11.14.1",
     "@mui/material": "^7.2.0",
+    "@tailwindcss/postcss": "^4.3.1",
     "axios": "^1.16.0",
     "lucide-react": "^0.459.0",
     "react": "^18.3.1",
@@ -20,11 +21,11 @@
     "react-hot-toast": "^2.4.1",
     "react-router-dom": "^6.30.4",
     "socket.io-client": "^4.8.1",
+    "tailwindcss": "^4.3.1",
     "zustand": "^5.0.1"
   },
   "devDependencies": {
     "@eslint/js": "^9.13.0",
-    "@tailwindcss/postcss": "^4.3.1",
     "@types/react": "^18.3.12",
     "@types/react-dom": "^18.3.1",
     "@vitejs/plugin-react": "^6.0.2",
@@ -36,7 +37,6 @@
     "eslint-plugin-react-refresh": "^0.4.14",
     "globals": "^15.11.0",
     "postcss": "^8.4.49",
-    "tailwindcss": "^4.3.1",
     "vite": "^8.0.16"
   }
 }
